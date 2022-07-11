@@ -49,6 +49,10 @@ function weatherDetails(city){
                 var currentWind = $('<p>');
                 var currentHumidity = $('<p>');
                 var currentUV = $('<p>');
+                var currentIcon = $('<img>');
+                currentIcon.attr('style','height:50px; width:50px;')
+
+                currentIcon.attr('src', 'https://openweathermap.org/img/wn/'+ data.weather[0].icon +'@2x.png')
 
                 cityName.text(city +' (' + currentDay + ')')
                 currentTemp.text("Temp: " + data.main.temp + " C");
@@ -58,6 +62,7 @@ function weatherDetails(city){
 
 
                 weather.append(cityName);
+                weather.append(currentIcon)
                 weather.append(currentTemp);
                 weather.append(currentWind);
                 weather.append(currentHumidity);
@@ -91,20 +96,21 @@ function weatherDetails(city){
                                         tableDateTH.text(moment().add(i+1,'days').format("DD/M/YYYY"));
 
                                         tableIconTR = $('<tr>');
-                                        tableIconTH = $('<i>');
-                                        tableIconTH.text(data.daily[i].weather[0].icon)
+                                        tableIconTH = $('<img>');
+                                        tableIconTH.attr('src', 'https://openweathermap.org/img/wn/'+ data.daily[i].weather[0].icon +'@2x.png')
+                                        tableIconTH.attr('style', 'height:50px; width:50px; margin-left:25px')
 
                                         tableTempTR = $('<tr>');
                                         tableTempTH = $('<th>');
-                                        tableTempTH.text("Temp: " + data.daily[i].temp.day);
+                                        tableTempTH.text("Temp: " + data.daily[i].temp.day +" C");
 
                                         tableWindTR = $('<tr>');
                                         tableWindTH = $('<th>');
-                                        tableWindTH.text("Wind: " + data.daily[i].wind_speed);
+                                        tableWindTH.text("Wind: " + data.daily[i].wind_speed + " KPH");
 
                                         tableHumidityTR = $('<tr>');
                                         tableHumidityTH = $('<th>');
-                                        tableHumidityTH.text("Humidity: " + data.daily[i].humidity);
+                                        tableHumidityTH.text("Humidity: " + data.daily[i].humidity +"%");
 
 
                                         tableTempTH.attr('style','font-weight:normal')
